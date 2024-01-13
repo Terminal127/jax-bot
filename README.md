@@ -1,4 +1,4 @@
-<img src="https://github.com/Terminal127/discord_bot/blob/main/img/logo-no-background.png" alt=bot width=90% height=40%>
+<img src="https://github.com/Terminal127/discord_bot/blob/main/img/logo-no-background.png" alt=bot width=90% height=10%>
 
 This bot would be your own personal Ai on Discord, ready to answer your questions, generate Information from pictures and encouragements. Imagine being able to ask the bot for a poem about a dragon, a code snippet for a game, or the latest news in Spanish, all within the same server. It would be like having your own pocket encyclopedia and language tutor!
 
