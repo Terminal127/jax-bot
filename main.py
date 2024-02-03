@@ -48,8 +48,16 @@ sad_words = ["sad", "depressed", "unhappy", "angry", "miserable", "depressing"]
 starter_encouragements = [
     "Cheer up!",
     "Hang in there.",
-    "You are a great person!"
-]
+    "You are a great person!",
+    "You are awesome!",
+    "You are amazing!",
+    "You are the best!",
+    "You are the greatest!",
+    "You are the most awesome person!",
+    "You are the most amazing person!",
+    "You are the best person!",
+    "You are the greatest person!",
+    ]
 
 # define functions
 
@@ -109,17 +117,17 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    
+
     elif message.content.startswith('jarvis'):
         await message.channel.send('Hello!')
-    
+
     elif message.content.startswith('$inspire'):
         quote = get_quote()
         await message.channel.send(quote)
-    
+
     elif any(word in message.content for word in sad_words):
         await message.channel.send(random.choice(starter_encouragements))
-    
+
     elif message.content.startswith('$generate'):
         await message.channel.send('Switched to text based ai')
         user_input = message.content[len('$generate'):]
@@ -130,15 +138,29 @@ async def on_message(message):
             await message.channel.send('Switched to anime based ai')
             image_data = await message.attachments[0].read()
             await process_image_anime(message.channel, image_data)
-        elif message.content.startswith('$answer'):
-            await message.channel.send('Switched to answer based ai')
-            image_data = await message.attachments[0].read()
-            await process_image_answer(message.channel, image_data)
-        else:
+        elif message.content.startswith('$information'):
             await message.channel.send('Switched to information based ai')
             image_data = await message.attachments[0].read()
             await process_image_information(message.channel, image_data)
-
+        else:
+            await message.channel.send('Switched to answer based ai')
+            image_data = await message.attachments[0].read()
+            await process_image_answer(message.channel, image_data)
+    if message.content.startswith('$help'):
+        await message.channel.send('''
+        $inspire: Get a random inspirational quote
+        $generate: Generate code based on the prompt
+        $information: Get information about the image
+        $anime: Get the name of the anime and info about it
+        $answer: Get the answer of the question
+        $help: Get help
+        ''')
+    if message.content.startswith('$exit'):
+        await message.channel.send('Bye!')
+        await client.close()
+        await client.logout()
+        await asyncio.sleep(1)
+        exit()
 
 # run client
 
